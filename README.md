@@ -26,8 +26,7 @@
 
 ```yaml
 dependencies:
-  arsenal:
-    path: ../arsenal # or git: ... — pub.dev release pending
+  arsenal: ^0.1.0
 ```
 
 ```dart
