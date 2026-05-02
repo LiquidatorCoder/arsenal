@@ -1,6 +1,5 @@
 import 'package:arsenal/colors.dart';
 import 'package:arsenal/typography.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ArAvatar extends StatelessWidget {
@@ -22,12 +21,12 @@ class ArAvatar extends StatelessWidget {
       ),
       child: ClipOval(
         child: imageUrl != null
-            ? CachedNetworkImage(
-                imageUrl: imageUrl!,
+            ? Image.network(
+                imageUrl!,
                 width: size,
                 height: size,
                 fit: BoxFit.cover,
-                errorWidget: (_, _, _) => _Fallback(initials: initials, size: size),
+                errorBuilder: (_, _, _) => _Fallback(initials: initials, size: size),
               )
             : _Fallback(initials: initials, size: size),
       ),

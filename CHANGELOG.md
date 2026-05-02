@@ -1,3 +1,10 @@
+## 0.1.1
+
+- Drop `cached_network_image` dep — `ArAvatar` now uses Flutter's built-in `Image.network`. Makes the package WASM-compatible and removes a transitive plugin footprint.
+- Add pub.dev `screenshots` carousel.
+- README: switch image embeds to markdown syntax so they render on pub.dev.
+- README: use absolute GitHub raw URLs for screenshots.
+
 ## 0.1.0+1
 
 - README: use absolute GitHub raw URLs for screenshots so they render on pub.dev.
