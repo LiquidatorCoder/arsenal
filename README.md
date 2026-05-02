@@ -1,6 +1,18 @@
-# Arsenal
+<h1 align="center">Arsenal ⚡</h1>
 
-A cyberpunk-inspired Flutter design system. Components, theme, typography, and bundled display fonts in one drop-in package.
+<p align="center">A cyberpunk-inspired Flutter design system. 🌃</p>
+
+<p align="center">
+  Components, theme, typography, and bundled display fonts — all wired up in one
+  drop-in package so you can ship sharp-cornered, neon-accent UI without
+  rolling your own tokens, fonts, or scaffolding.
+</p>
+
+<p align="center">
+  <a href="https://pub.dev/packages/arsenal"><img src="https://img.shields.io/pub/v/arsenal.svg?label=pub&color=blue" alt="pub version" /></a>
+  <a href="https://flutter.dev"><img src="https://img.shields.io/badge/Platform-Flutter-blue.svg?logo=flutter" alt="Platform Flutter" /></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-BSD--3-orange.svg" alt="License BSD-3" /></a>
+</p>
 
 <p align="center">
   <img src="screenshots/gallery-top.png" alt="Gallery — typography and buttons" width="220" />
@@ -15,7 +27,7 @@ A cyberpunk-inspired Flutter design system. Components, theme, typography, and b
 ```yaml
 dependencies:
   arsenal:
-    path: ../arsenal   # or git: ... — pub.dev release pending
+    path: ../arsenal # or git: ... — pub.dev release pending
 ```
 
 ```dart
@@ -30,14 +42,14 @@ MaterialApp(
 );
 ```
 
-## What's inside
+## 📦 What's inside
 
-- **Components:** `ArAppBar`, `ArAvatar`, `ArBottomNav`, `ArBottomSheet`, `ArButton`, `ArChip`, `ArProgressSteps`, `ArScaffold`, `ArTag`.
-- **Tokens:** `ArsenalColors`, `ArsenalSpacing`, `ArsenalTypography`.
-- **Theme:** `arsenalTheme()` returns a ready-to-use `ThemeData`.
-- **Fonts (bundled):** BigShouldersDisplay, Rajdhani, JetBrainsMono.
+- 🧩 **Components:** `ArAppBar`, `ArAvatar`, `ArBottomNav`, `ArBottomSheet`, `ArButton`, `ArChip`, `ArProgressSteps`, `ArScaffold`, `ArTag`.
+- 🎨 **Tokens:** `ArsenalColors`, `ArsenalSpacing`, `ArsenalTypography`.
+- 🌒 **Theme:** `arsenalTheme()` returns a ready-to-use `ThemeData`.
+- 🔤 **Fonts (bundled):** BigShouldersDisplay, Rajdhani, JetBrainsMono.
 
-## Example
+## 🚀 Example
 
 A runnable demo app lives in [`example/`](./example):
 
@@ -46,6 +58,6 @@ cd example
 flutter run
 ```
 
-## License
+## 📄 License
 
 BSD 3-Clause. See [LICENSE](./LICENSE).
