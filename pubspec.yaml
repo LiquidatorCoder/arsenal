@@ -1,0 +1,98 @@
+name: arsenal
+description: Arsenal — a cyberpunk-inspired Flutter design system. Components, theme, typography, and bundled display fonts.
+version: 0.1.0
+repository: https://github.com/Hash-Studios/arsenal
+issue_tracker: https://github.com/Hash-Studios/arsenal/issues
+
+environment:
+  sdk: ">=3.8.0 <4.0.0"
+  flutter: ">=3.19.0"
+
+dependencies:
+  cached_network_image: ^3.0.0
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  lint: ^2.3.0
+
+flutter:
+  fonts:
+    - family: BigShouldersDisplay
+      fonts:
+        - asset: lib/fonts/BigShouldersDisplay-Thin.ttf
+          weight: 100
+        - asset: lib/fonts/BigShouldersDisplay-ExtraLight.ttf
+          weight: 200
+        - asset: lib/fonts/BigShouldersDisplay-Light.ttf
+          weight: 300
+        - asset: lib/fonts/BigShouldersDisplay-Regular.ttf
+          weight: 400
+        - asset: lib/fonts/BigShouldersDisplay-Medium.ttf
+          weight: 500
+        - asset: lib/fonts/BigShouldersDisplay-SemiBold.ttf
+          weight: 600
+        - asset: lib/fonts/BigShouldersDisplay-Bold.ttf
+          weight: 700
+        - asset: lib/fonts/BigShouldersDisplay-ExtraBold.ttf
+          weight: 800
+        - asset: lib/fonts/BigShouldersDisplay-Black.ttf
+          weight: 900
+
+    - family: Rajdhani
+      fonts:
+        - asset: lib/fonts/Rajdhani-Light.ttf
+          weight: 300
+        - asset: lib/fonts/Rajdhani-Regular.ttf
+          weight: 400
+        - asset: lib/fonts/Rajdhani-Medium.ttf
+          weight: 500
+        - asset: lib/fonts/Rajdhani-SemiBold.ttf
+          weight: 600
+        - asset: lib/fonts/Rajdhani-Bold.ttf
+          weight: 700
+
+    - family: JetBrainsMono
+      fonts:
+        - asset: lib/fonts/JetBrainsMono-Thin.ttf
+          weight: 100
+        - asset: lib/fonts/JetBrainsMono-ExtraLight.ttf
+          weight: 200
+        - asset: lib/fonts/JetBrainsMono-Light.ttf
+          weight: 300
+        - asset: lib/fonts/JetBrainsMono-Regular.ttf
+          weight: 400
+        - asset: lib/fonts/JetBrainsMono-Medium.ttf
+          weight: 500
+        - asset: lib/fonts/JetBrainsMono-SemiBold.ttf
+          weight: 600
+        - asset: lib/fonts/JetBrainsMono-Bold.ttf
+          weight: 700
+        - asset: lib/fonts/JetBrainsMono-ExtraBold.ttf
+          weight: 800
+        - asset: lib/fonts/JetBrainsMono-ThinItalic.ttf
+          weight: 100
+          style: italic
+        - asset: lib/fonts/JetBrainsMono-ExtraLightItalic.ttf
+          weight: 200
+          style: italic
+        - asset: lib/fonts/JetBrainsMono-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: lib/fonts/JetBrainsMono-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: lib/fonts/JetBrainsMono-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: lib/fonts/JetBrainsMono-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: lib/fonts/JetBrainsMono-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: lib/fonts/JetBrainsMono-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
