@@ -29,7 +29,7 @@ class ArExampleOperatorProfile extends StatelessWidget {
             // ── Hero identity ──────────────────────────────────────────────
             const ArAvatar(initials: 'VK', size: ArsenalSpacing.avatarLg),
             const SizedBox(height: ArsenalSpacing.md),
-            Text('VECTOR_K', style: ArsenalTypography.displayLarge),
+            const Text('VECTOR_K', style: ArsenalTypography.displayLarge),
             const SizedBox(height: ArsenalSpacing.xs),
             Text('SIGNAL ARCHITECT // SECTOR 7', style: ArsenalTypography.mono.copyWith(color: ArsenalColors.muted)),
             const SizedBox(height: ArsenalSpacing.md),
@@ -48,7 +48,7 @@ class ArExampleOperatorProfile extends StatelessWidget {
             const SizedBox(height: ArsenalSpacing.lg),
 
             // ── Stats cards ────────────────────────────────────────────────
-            Align(
+            const Align(
               alignment: Alignment.centerLeft,
               child: Text('SYSTEM STATS', style: ArsenalTypography.subheadingMedium),
             ),
@@ -71,7 +71,7 @@ class ArExampleOperatorProfile extends StatelessWidget {
             const SizedBox(height: ArsenalSpacing.lg),
 
             // ── Clearance progress ─────────────────────────────────────────
-            Align(
+            const Align(
               alignment: Alignment.centerLeft,
               child: Text('CLEARANCE PROGRESS', style: ArsenalTypography.subheadingMedium),
             ),
@@ -97,7 +97,7 @@ class ArExampleOperatorProfile extends StatelessWidget {
             const SizedBox(height: ArsenalSpacing.lg),
 
             // ── Specializations ────────────────────────────────────────────
-            Align(
+            const Align(
               alignment: Alignment.centerLeft,
               child: Text('SPECIALIZATIONS', style: ArsenalTypography.subheadingMedium),
             ),

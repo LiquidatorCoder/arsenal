@@ -47,8 +47,8 @@ class ArAppBar extends StatelessWidget {
                 if (showBack)
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: ArsenalSpacing.sm),
+                    child: const Padding(
+                      padding: EdgeInsets.only(right: ArsenalSpacing.sm),
                       child: Icon(
                         Icons.arrow_back_ios_new,
                         size: ArsenalSpacing.iconSm,

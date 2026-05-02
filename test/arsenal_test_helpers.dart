@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:arsenal/colors.dart';
 import 'package:arsenal/theme.dart';

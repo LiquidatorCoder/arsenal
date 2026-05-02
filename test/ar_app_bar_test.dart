@@ -34,17 +34,17 @@ void main() {
   testWidgets('ar_app_bar_with_bottom golden', (tester) async {
     await pumpArsenalWidget(
       tester,
-      SizedBox(
+      const SizedBox(
         width: 390,
         height: 160,
         child: ArAppBar(
           title: 'Arsenal',
           showBackButton: false,
-          action: const ArTag(label: 'SIGNAL: STABLE'),
+          action: ArTag(label: 'SIGNAL: STABLE'),
           bottom: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Row(
-              children: const [
+              children: [
                 ArChip(label: 'All'),
                 SizedBox(width: 8),
                 ArChip(label: 'Wallpapers'),

@@ -72,7 +72,7 @@ class ArExampleMissionControl extends StatelessWidget {
                         children: [
                           Text('SUCCESS RATE', style: ArsenalTypography.mono.copyWith(color: ArsenalColors.muted)),
                           const SizedBox(height: ArsenalSpacing.xs),
-                          Text('94%', style: ArsenalTypography.hero),
+                          const Text('94%', style: ArsenalTypography.hero),
                         ],
                       ),
                     ),
@@ -83,7 +83,7 @@ class ArExampleMissionControl extends StatelessWidget {
             const SizedBox(height: ArsenalSpacing.lg),
 
             // ── Recent operations ──────────────────────────────────────────
-            Text('RECENT OPERATIONS', style: ArsenalTypography.subheadingMedium),
+            const Text('RECENT OPERATIONS', style: ArsenalTypography.subheadingMedium),
             const SizedBox(height: ArsenalSpacing.sm),
             const _MissionCard(
               codename: 'GHOST PROTOCOL',
