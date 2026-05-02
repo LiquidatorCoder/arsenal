@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  golden-tests:
+    name: Tests + goldens
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Read Flutter version from .fvmrc
+        id: fvm
+        run: echo "version=$(jq -r '.flutter' .fvmrc)" >> "$GITHUB_OUTPUT"
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ steps.fvm.outputs.version }}
+          channel: stable
+          cache: true
+          cache-key: flutter-${{ runner.os }}-${{ steps.fvm.outputs.version }}
+          pub-cache-key: flutter-pub-${{ runner.os }}-${{ hashFiles('pubspec.lock') }}
+
+      - name: Install dependencies
+        run: make get
+
+      - name: Static analysis
+        run: flutter analyze
+
+      - name: Verify golden snapshots
+        run: make verify-goldens
