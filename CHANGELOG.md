@@ -1,3 +1,7 @@
+## 0.1.2
+
+- README: cache-bust screenshot URLs (`?v=2`) so pub.dev's external-images proxy fetches fresh — earlier versions had a stale 404 cached.
+
 ## 0.1.1
 
 - Drop `cached_network_image` dep — `ArAvatar` now uses Flutter's built-in `Image.network`. Makes the package WASM-compatible and removes a transitive plugin footprint.

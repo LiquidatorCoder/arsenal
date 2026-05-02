@@ -15,18 +15,18 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/gallery-top.png" alt="Gallery — typography and buttons" width="220" />
-  <img src="https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/gallery-bottom.png" alt="Gallery — chips, avatar, progress, sheet" width="220" />
-  <img src="https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/bottom-sheet.png" alt="Bottom sheet" width="220" />
+  <img src="https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/gallery-top.png?v=2" alt="Gallery — typography and buttons" width="220" />
+  <img src="https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/gallery-bottom.png?v=2" alt="Gallery — chips, avatar, progress, sheet" width="220" />
+  <img src="https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/bottom-sheet.png?v=2" alt="Bottom sheet" width="220" />
 </p>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/mission-control.png" alt="Mission Control example screen" width="330" />
-  <img src="https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/operator-profile.png" alt="Operator Profile example screen" width="330" />
+  <img src="https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/mission-control.png?v=2" alt="Mission Control example screen" width="330" />
+  <img src="https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/operator-profile.png?v=2" alt="Operator Profile example screen" width="330" />
 </p>
 
 ```yaml
 dependencies:
-  arsenal: ^0.1.0
+  arsenal: ^0.1.2
 ```
 
 ```dart
