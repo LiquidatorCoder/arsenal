@@ -1,3 +1,7 @@
+## 0.1.0+1
+
+- README: use absolute GitHub raw URLs for screenshots so they render on pub.dev.
+
 ## 0.1.0
 
 - Initial release of the Arsenal cyberpunk design system for Flutter.

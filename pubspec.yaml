@@ -1,6 +1,6 @@
 name: arsenal
 description: Arsenal — a cyberpunk-inspired Flutter design system. Components, theme, typography, and bundled display fonts.
-version: 0.1.0
+version: 0.1.0+1
 repository: https://github.com/LiquidatorCoder/arsenal
 issue_tracker: https://github.com/LiquidatorCoder/arsenal/issues
 
