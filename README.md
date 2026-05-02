@@ -2,6 +2,16 @@
 
 A cyberpunk-inspired Flutter design system. Components, theme, typography, and bundled display fonts in one drop-in package.
 
+<p align="center">
+  <img src="screenshots/gallery-top.png" alt="Gallery — typography and buttons" width="220" />
+  <img src="screenshots/gallery-bottom.png" alt="Gallery — chips, avatar, progress, sheet" width="220" />
+  <img src="screenshots/bottom-sheet.png" alt="Bottom sheet" width="220" />
+</p>
+<p align="center">
+  <img src="screenshots/mission-control.png" alt="Mission Control example screen" width="330" />
+  <img src="screenshots/operator-profile.png" alt="Operator Profile example screen" width="330" />
+</p>
+
 ```yaml
 dependencies:
   arsenal:
