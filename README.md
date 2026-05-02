@@ -14,12 +14,15 @@
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-BSD--3-orange.svg" alt="License BSD-3" /></a>
 </p>
 
-![Gallery — typography and buttons](https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/gallery-top.png)
-![Gallery — chips, avatar, progress, sheet](https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/gallery-bottom.png)
-![Bottom sheet](https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/bottom-sheet.png)
-
-![Mission Control example screen](https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/mission-control.png)
-![Operator Profile example screen](https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/operator-profile.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/gallery-top.png" alt="Gallery — typography and buttons" width="220" />
+  <img src="https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/gallery-bottom.png" alt="Gallery — chips, avatar, progress, sheet" width="220" />
+  <img src="https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/bottom-sheet.png" alt="Bottom sheet" width="220" />
+</p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/mission-control.png" alt="Mission Control example screen" width="330" />
+  <img src="https://raw.githubusercontent.com/LiquidatorCoder/arsenal/main/screenshots/operator-profile.png" alt="Operator Profile example screen" width="330" />
+</p>
 
 ```yaml
 dependencies:
