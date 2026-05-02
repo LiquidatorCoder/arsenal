@@ -1,4 +1,4 @@
-You are building a new UI flow for the Prism app using the **Arsenal design system** — a cyberpunk / tech-noir aesthetic. The user's request follows this message. Implement it fully.
+You are building a new UI flow using the **Arsenal design system** — a cyberpunk / tech-noir aesthetic for Flutter. The user's request follows this message. Implement it fully.
 
 ---
 
@@ -6,7 +6,7 @@ You are building a new UI flow for the Prism app using the **Arsenal design syst
 
 ### Single import
 ```dart
-import 'package:Prism/core/arsenal/arsenal.dart';
+import 'package:arsenal/arsenal.dart';
 ```
 
 ---
@@ -134,9 +134,8 @@ Sharp corners, surface background, drag handle. Content is Arsenal-themed automa
 3. **Accent (`#FC0053`) is used sparingly** — only on active/primary elements, CTAs, highlights. Not on body text.
 4. **Text hierarchy**: hero/display for titles (BigShouldersDisplay), Rajdhani for all UI copy, JetBrainsMono only for technical/status text.
 5. **Dividers and borders** use `ArsenalColors.border` (`#2A2A2A`) at 1px.
-6. **Import sorting**: `package:Prism/` imports must come before `package:flutter/` and other packages (uppercase P sorts before lowercase in ASCII).
-7. **No `@injectable`, `@freezed`, `@RoutePage`** in Arsenal files — pure Flutter/Dart only.
-8. **Isolation**: Arsenal files import only `flutter/material.dart`, `google_fonts`, and each other (`package:Prism/core/arsenal/...`). Never import from `lib/theme/` or existing feature code.
+6. **No `@injectable`, `@freezed`, `@RoutePage`** in Arsenal files — pure Flutter/Dart only.
+7. **Isolation**: Arsenal source files import only `flutter/material.dart`, `google_fonts`, and each other (`package:arsenal/...`). They do not depend on any consumer-app code.
 
 ---
 
