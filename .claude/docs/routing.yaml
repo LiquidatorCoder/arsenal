@@ -1,0 +1,231 @@
+# arsenal — verification routing policy
+#
+# The human-readable statement of the policy whose executable form is
+# tool/harness/lib/classify.mjs (tiers) and tool/harness/lib/reviewpolicy.mjs (review).
+#
+# LOCKSTEP: this file is NOT parsed at runtime. Node has no built-in YAML parser and
+# arsenal is a Dart package with no YAML dependency, so the .mjs modules are the
+# executable truth and this file is the readable one. Change both together. Both are
+# hashed into every verify.json's verification_policy_fingerprint, so drift invalidates
+# existing artifacts loudly instead of silently.
+
+schema_version: 1
+repo: arsenal
+kind: dart-flutter-package
+published_to: pub.dev
+
+# What this repo actually is, and therefore what verification has to protect.
+context:
+  - A cyberpunk Flutter DESIGN SYSTEM published as the `arsenal` package.
+  - 21 committed golden PNGs under test/goldens/ are the primary regression evidence.
+  - Flutter is pinned to 3.41.4 by .fvmrc; golden renders are engine-sensitive.
+  - No codegen (no build_runner, no *.g.dart), no native platform code in the package
+    itself, no network/credential/persistence code anywhere.
+
+# ---------------------------------------------------------------------------------------
+tiers:
+  fast:
+    checks: [assets, analyze]
+    intent: >
+      Does it still compile and lint, and do the assets the pubspec declares exist.
+      The cheap floor, a few seconds. Never enough for anything that can change a
+      rendered pixel.
+  normal:
+    checks: [assets, analyze, test, example_analyze]
+    intent: >
+      Everything the repo's own CI runs, plus the demo app. `test` is the golden suite —
+      this is the tier that proves a visual change is the one that was intended.
+  full:
+    checks: [assets, analyze, test, example_analyze, publish_dry_run]
+    advisory_checks: [publish_dry_run]
+    intent: >
+      Release readiness. Adds `flutter pub publish --dry-run`, the only check that
+      validates the archive this repo actually ships to pub.dev.
+
+# Where each command came from. Nothing here was assumed.
+check_sources:
+  assets: >
+    Harness-added structural check, in-process and toolchain-free. Asserts every
+    `- asset:` font path in pubspec's `flutter: fonts:` block and every `screenshots:`
+    path exists on disk. A missing font renders Ahem blocks into every golden; a missing
+    screenshot fails pub publish outright. This repo has already shipped three releases
+    fixing screenshot-path problems (CHANGELOG 0.1.0+1, 0.1.1, 0.1.2).
+  analyze: "Makefile `analyze:` and .github/workflows/ci.yml 'Static analysis'"
+  test: "Makefile `test:` / `verify-goldens:`; CI 'Verify golden snapshots'"
+  example_analyze: "Makefile `get:` fetches example/ deps so the demo app analyzes"
+  publish_dry_run: >
+    Harness-added. NOT in this repo's CI, and ADVISORY only — it runs and is reported but
+    does not gate. `pub publish --dry-run` exits non-zero on any warning, including
+    "checked-in files are modified in git", which is true of any working tree mid-task.
+    Read it yourself before publishing, with everything committed. Read-only.
+
+# Deliberately absent, and why. See AGENTS.md "Formatting".
+not_checked:
+  dart_format: >
+    This repo has never adopted `dart format`. It is absent from the Makefile and from
+    CI, and running it today would rewrite 23 of 28 Dart files. Gating on it would
+    manufacture a failure that says nothing about the change under test.
+
+# ---------------------------------------------------------------------------------------
+# First match wins, in order. Mirrors RULES in tool/harness/lib/classify.mjs exactly.
+classification:
+  # Design tokens — one edit re-renders every golden, and restyles every consumer.
+  - match: lib/colors.dart
+    tier: full
+    why: design token — tool/update_goldens.sh regenerates ALL goldens when it changes
+  - match: lib/spacing.dart
+    tier: full
+    why: design token — regenerates ALL goldens; changes layout in every consumer
+  - match: lib/typography.dart
+    tier: full
+    why: design token — regenerates ALL goldens; changes text metrics in every consumer
+  - match: lib/theme.dart
+    tier: full
+    why: design token — the ThemeData every consumer applies
+  - match: lib/fonts/**
+    tier: full
+    why: font bytes are rendered into every golden AND shipped in the published archive
+
+  # Published API surface.
+  - match: lib/arsenal.dart
+    tier: full
+    why: the single export barrel is the public API; a changed export breaks consumers
+  - match: lib/**
+    tier: normal
+    why: components and example screens, each backed by a committed golden
+
+  # What golden verification itself means.
+  - match: test/flutter_test_config.dart
+    tier: full
+    why: installs the golden comparator and its 0.5% pixel tolerance
+  - match: test/arsenal_test_helpers.dart
+    tier: full
+    why: loads fonts and fixes the 390x844@3x surface every golden renders on
+  - match: test/goldens/**
+    tier: normal
+    why: an accepted visual change must be re-proved by a real test run
+  - match: test/**
+    tier: normal
+    why: the widget + golden suite
+
+  # The published artifact.
+  - match: pubspec.yaml
+    tier: full
+    why: version, SDK constraints, bundled-font manifest, pub.dev screenshot list
+  - match: CHANGELOG.md
+    tier: full
+    why: part of the pub.dev release artifact
+  - match: LICENSE
+    tier: full
+    why: distribution terms; pub publish validates its presence
+  - match: screenshots/**
+    tier: full
+    why: referenced by pubspec `screenshots:` — a missing file fails publish validation
+  - match: .fvmrc
+    tier: full
+    why: the pinned SDK renders the goldens; changing it can invalidate all 21 at once
+
+  # Tooling and policy.
+  - match: analysis_options.yaml
+    tier: normal
+    why: lint config re-scopes every analyze run
+  - match: Makefile
+    tier: normal
+    why: the repo's own command surface
+  - match: .github/workflows/**
+    tier: normal
+    why: CI definition — what "passing" means on a PR
+  - match: tool/harness/**
+    tier: normal
+    why: verifier, gate and review logic
+  - match: tool/**
+    tier: normal
+    why: golden generation and the pre-commit hook that stages regenerated PNGs
+  - match: .claude/docs/routing.yaml
+    tier: normal
+    why: verification policy
+  - match: AGENTS.md
+    tier: normal
+    why: the rules agents work from
+
+  # Demo app. Not `fast`: example_analyze only runs at normal and above, so a lower
+  # tier would let an example-only change complete without analyzing what changed.
+  - match: example/**
+    tier: normal
+    why: gated by the example_analyze check, which does not run at fast
+
+  # Documentation.
+  - match: README.md
+    tier: fast
+    why: documentation
+  - match: doc/**
+    tier: fast
+    why: documentation — `doc/`, singular, is the pub package-layout convention
+  - match: .claude/tasks/**
+    tier: fast
+    why: task bookkeeping
+  - match: .claude/**
+    tier: fast
+    why: agent configuration
+  - match: "*"
+    tier: fast
+    why: default floor — nothing here is verification-exempt
+
+# ---------------------------------------------------------------------------------------
+# Independent review. Optional in this repo; default mode is `none`.
+# Mirrors REVIEWED_PATH_PATTERNS in tool/harness/lib/reviewpolicy.mjs.
+review:
+  default_mode: none
+  reviewer_model: gpt-5.6-sol
+  rationale: >
+    arsenal has no network calls, no credentials, no persistence and no native signing
+    config, so the usual trust-boundary categories do not apply. It can affect people
+    outside this checkout in exactly two ways: by being published, and by shifting the
+    design tokens every downstream app inherits. Goldens prove arsenal still renders as
+    intended; they cannot prove the intent was right. Review covers that gap only.
+  paths:
+    - match: pubspec.yaml
+      mode: standard
+      why: version, SDK constraints, bundled-font manifest, publish metadata
+    - match: lib/arsenal.dart
+      mode: standard
+      why: a changed export is a breaking change for every consumer
+    - match: LICENSE
+      mode: standard
+      why: distribution terms of a published artifact
+    - match: lib/colors.dart
+      mode: standard
+      why: a token change silently restyles every downstream app
+    - match: lib/spacing.dart
+      mode: standard
+      why: a token change silently re-lays-out every downstream app
+    - match: lib/typography.dart
+      mode: standard
+      why: a token change silently changes text metrics downstream
+    - match: lib/theme.dart
+      mode: standard
+      why: the ThemeData every consumer applies
+    - match: lib/fonts/**
+      mode: standard
+      why: font binaries are redistributed — rendering and licensing both matter
+
+# ---------------------------------------------------------------------------------------
+# Shared resources a worker may serialize on. No `codegen` (no build_runner here) and no
+# device pool. `goldens` is arsenal-specific: --update-goldens rewrites PNGs tree-wide.
+lock_resources:
+  - dependency-resolution
+  - goldens
+  - repo-format
+  - release
+
+# Files hashed into verification_policy_fingerprint.
+policy_files:
+  - tool/harness/verify
+  - tool/harness/lib/classify.mjs
+  - tool/harness/lib/assetcheck.mjs
+  - tool/harness/lib/reviewpolicy.mjs
+  - .claude/docs/routing.yaml
+  - analysis_options.yaml
+  - .fvmrc
+  - test/flutter_test_config.dart
+  - Makefile

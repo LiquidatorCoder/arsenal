@@ -30,3 +30,10 @@ example/ios/Pods/
 example/ios/.symlinks/
 example/android/.gradle/
 example/android/local.properties
+
+# Claude harness runtime state (see .claude/tasks/README.md).
+# Only the README and _template/ are tracked; per-task directories are working state.
+.claude/tasks/*
+!.claude/tasks/README.md
+!.claude/tasks/_template/
+.claude/worktrees/
