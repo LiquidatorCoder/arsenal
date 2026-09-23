@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "adapter_api": 1,
+  "requires_core": ">=2.0.0 <3.0.0",
+  "name": "arsenal",
+  "integration_branch": "main",
+  "verification": {
+    "policy_files": [
+      ".claude/docs/routing.yaml",
+      "analysis_options.yaml",
+      ".fvmrc",
+      "test/flutter_test_config.dart",
+      "Makefile"
+    ],
+    "fingerprint_exclude": [
+      ".claude/tasks/",
+      ".claude/worktrees/",
+      ".dart_tool/",
+      "build/",
+      "example/.dart_tool/",
+      "example/build/",
+      "coverage/"
+    ]
+  },
+  "risk": {
+    "rules": [
+      { "match": "lib/colors.dart", "tier": "full", "why": "design token — tool/update_goldens.sh regenerates ALL goldens when it changes, and every downstream app inherits it" },
+      { "match": "lib/spacing.dart", "tier": "full", "why": "design token — regenerates ALL goldens; changes layout in every consumer" },
+      { "match": "lib/typography.dart", "tier": "full", "why": "design token — regenerates ALL goldens; changes text metrics in every consumer" },
+      { "match": "lib/theme.dart", "tier": "full", "why": "design token — regenerates ALL goldens; the ThemeData every consumer applies" },
+      { "match": "lib/fonts/**", "tier": "full", "why": "bundled font bytes are rendered into every golden AND shipped inside the published archive" },
+      { "match": "lib/arsenal.dart", "tier": "full", "why": "the single export barrel is this package's public API; a changed export is a breaking change downstream" },
+      { "match": "lib/**", "tier": "normal", "why": "components and example screens, each backed by a committed golden" },
+      { "match": "test/flutter_test_config.dart", "tier": "full", "why": "installs the golden comparator and its 0.5% pixel tolerance — it defines what a passing render is" },
+      { "match": "test/arsenal_test_helpers.dart", "tier": "full", "why": "loads the fonts and fixes the 390x844@3x surface every golden is rendered on" },
+      { "match": "test/goldens/**", "tier": "normal", "why": "an accepted visual change must be re-proved by an actual test run, not by the PNG alone" },
+      { "match": "test/**", "tier": "normal", "why": "the widget + golden suite" },
+      { "match": "pubspec.yaml", "tier": "full", "why": "version, SDK constraints, the bundled-font manifest and the pub.dev screenshot list" },
+      { "match": "CHANGELOG.md", "tier": "full", "why": "part of the pub.dev release artifact" },
+      { "match": "LICENSE", "tier": "full", "why": "distribution terms of a published artifact; pub publish validates its presence" },
+      { "match": "screenshots/**", "tier": "full", "why": "referenced by pubspec `screenshots:` — a missing or renamed file fails pub publish validation" },
+      { "match": ".fvmrc", "tier": "full", "why": "the pinned Flutter SDK renders the goldens; changing it can invalidate all 21 at once" },
+      { "match": "analysis_options.yaml", "tier": "normal", "why": "lint config re-scopes every analyze run" },
+      { "match": "Makefile", "tier": "normal", "why": "the repo's own command surface (get/test/analyze/verify-goldens)" },
+      { "match": ".github/workflows/**", "tier": "normal", "why": "CI definition — what 'passing' means on a PR" },
+      { "match": "tool/harness/**", "tier": "normal", "why": "verifier, gate and review logic" },
+      { "match": "tool/**", "tier": "normal", "why": "golden generation and the pre-commit hook that stages regenerated PNGs" },
+      { "match": ".claude/docs/routing.yaml", "tier": "normal", "why": "verification policy" },
+      { "match": "AGENTS.md", "tier": "normal", "why": "the rules agents work from" },
+      { "match": "example/**", "tier": "normal", "why": "gated by the example_analyze check, which does not run at fast" },
+      { "match": "README.md", "tier": "fast", "why": "documentation" },
+      { "match": "doc/**", "tier": "fast", "why": "documentation — `doc/`, singular, is the pub package-layout convention" },
+      { "match": ".claude/tasks/**", "tier": "fast", "why": "task bookkeeping" },
+      { "match": ".claude/**", "tier": "fast", "why": "agent configuration" },
+      { "match": "*", "tier": "fast", "why": "default floor — nothing here is verification-exempt" }
+    ]
+  },
+  "review": {
+    "wired": true,
+    "default_mode": "none",
+    "rules": [
+      { "match": "pubspec.yaml", "mode": "standard", "why": "version, SDK constraints, the bundled-font manifest and publish metadata" },
+      { "match": "lib/arsenal.dart", "mode": "standard", "why": "a changed export is a breaking change for every consumer of the package" },
+      { "match": "LICENSE", "mode": "standard", "why": "distribution terms of a published artifact" },
+      { "match": "lib/colors.dart", "mode": "standard", "why": "a token change silently restyles every downstream app; no golden here can catch that" },
+      { "match": "lib/spacing.dart", "mode": "standard", "why": "a token change silently re-lays-out every downstream app" },
+      { "match": "lib/typography.dart", "mode": "standard", "why": "a token change silently changes text metrics in every downstream app" },
+      { "match": "lib/theme.dart", "mode": "standard", "why": "the ThemeData every consumer applies" },
+      { "match": "lib/fonts/**", "mode": "standard", "why": "font binaries are redistributed inside the published archive — rendering and licensing both matter" }
+    ],
+    "preamble": [
+      "arsenal is a cyberpunk Flutter design system, published to pub.dev as the `arsenal` package. Review the diff below for correctness and for anything that would harm a downstream consumer:",
+      "- a changed or removed export in `lib/arsenal.dart` (breaking for every consumer)",
+      "- a changed widget constructor signature or default",
+      "- a design-token change (`colors`/`spacing`/`typography`/`theme`) — these are inherited by every app that depends on arsenal, and this repo's goldens can only prove arsenal still renders as intended, never that the intent was right",
+      "- `pubspec.yaml` version / SDK constraint / bundled-font manifest consistency, and whether CHANGELOG.md records the change",
+      "- font binaries added or replaced under `lib/fonts/` (these are redistributed)",
+      "The `example/` app is a demo, not a product. Golden PNGs under `test/goldens/` are generated evidence — judge whether a visual change was intended, not the bytes."
+    ],
+    "generated": [],
+    "policy_files": [".claude/docs/routing.yaml"]
+  },
+  "locks": ["dependency-resolution", "goldens", "repo-format", "release"],
+  "native": {}
+}
