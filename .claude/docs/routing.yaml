@@ -176,7 +176,7 @@ classification:
 # Mirrors REVIEWED_PATH_PATTERNS in tool/harness/lib/reviewpolicy.mjs.
 review:
   default_mode: none
-  reviewer_model: gpt-5.6-sol
+  reviewer: global  # named by the active global harness policy (~/.claude/harness/current/policies/global.md)
   rationale: >
     arsenal has no network calls, no credentials, no persistence and no native signing
     config, so the usual trust-boundary categories do not apply. It can affect people
